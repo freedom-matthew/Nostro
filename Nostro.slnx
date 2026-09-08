@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Nostro.Core/Nostro.Core.csproj" />
+  <Project Path="Nostro.Tests/Nostro.Tests.csproj" />
+</Solution>
