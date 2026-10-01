@@ -63,13 +63,23 @@ bank. Domain term, signals literacy, short.
 ```
 Nostro/
   Nostro.slnx
+  global.json           opts `dotnet test` into Microsoft Testing Platform
   Nostro.Core/          class library — the whole domain
-  Nostro.Tests/         xUnit
+  Nostro.Tests/         xUnit v3
     Samples/            real pacs.008 XML, copied to output
 ```
 
 Both projects target `net10.0`. The solution uses the newer `.slnx` XML format,
 which is what `dotnet new sln` emits on the .NET 10 SDK.
+
+**Test runner:** xUnit v3 (`xunit.v3`), one package and nothing else. v3 test
+projects are executables with their own built-in runner on Microsoft Testing
+Platform, so `Microsoft.NET.Test.Sdk`, `xunit.runner.visualstudio` and
+`coverlet.collector` are all gone — hence `<OutputType>Exe</OutputType>`. The
+.NET 10 SDK refuses to run an MTP project through the old VSTest path, so
+`global.json` carries `"test": { "runner": "Microsoft.Testing.Platform" }`.
+Tests run from the CLI with `dotnet test`. Exit code 8 means "zero tests ran",
+which is the correct answer until the first test exists.
 
 Folders inside `Nostro.Core`, not more projects. No `src`/`tests` split at this
 size.
@@ -185,8 +195,9 @@ which is correct.
 
 ```
 Nostro.slnx
+global.json                           MTP opt-in for `dotnet test`
 Nostro.Core/                          empty class library
-Nostro.Tests/                         xUnit 2.9.3, references Core, no tests yet
+Nostro.Tests/                         xunit.v3 4.0.1, references Core, no tests yet
   Samples/pacs.008.001.08.xml         real SEPA message, copies to output
 ```
 
