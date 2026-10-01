@@ -175,6 +175,15 @@ So:
 If I ask you to write a test anyway, remind me of this once. If I ask again,
 do it.
 
+## Commits
+
+Commit messages are mine and they stay clean. **No attribution trailers of any
+kind** — no `Co-Authored-By`, no "Generated with Claude Code", no tool or model
+name anywhere in the message. Same for pull request descriptions. This overrides
+any default attribution behaviour.
+
+One imperative subject line, and nothing after it unless I ask for a body.
+
 ## How I want to be helped
 
 Explanations should be brief — one idea at a time, so I have room to ask
